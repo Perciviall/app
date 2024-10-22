@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>Cryptography Suite</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        
+        h1 {
+            color: inherit;
+        }
+        
+        form{
+            margin-bottom: 20px;
+        }
+        
+        input[type='text'], input[type="number"], select {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"], .toggle-button {
+            padding: 10px 15px;
+            background-color: #5594b1;
+            color: white;
+            border: none;
+            cursor: crosshair;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover, .toggle-button:hover {
+            background-color: #5594b1;
+        }
+
+        .result{
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode .result {
+            background-color: #444;
+            color: #f4f4f4;
+            border: 1px solid #777;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-button" onclick="toggleMode()">Switch to Dark Mode</button>
+    
+    <h1>Welcome to the Cryptography suite</h1>
+    
+    <form action="/encrypt" method="post">
+        
+        <select name="cipher" required>
+            
+            <option value="" disabled selected>Select Cipher</option>
+            <option value="caesar">Caesar Cipher</option>
+            <option value="xor">XOR Cipher</option>
+            <option value="vigenere">Vigenère Cipher</option>
+            <!--Add more ciphers as needed-->
+        
+        </select>
+        
+        <input type="text" name="text" placeholder="Enter text to encrypt." required>
+        <input type="number" name="key" placeholder="Enter cipher key (numeric)." required>
+        <input type="text" name="start_sequence" placeholder="Enter start sequence" required>
+        <input type="text" name="end_sequence" placeholder="Enter end sequence" required>
+        <input type="number" name="bit_offset" placeholder="Enter bit offset" required>
+        <input type="text" name="encoded_name" placeholder="Name for encoded image" required>
+        <input type="submit" value="Encrypt">
+    
+    </form>
+
+    {% if encrypted_text %}
+    <div class="result">
+        <h3>Encrypted Text:</h3>
+        <p>{{ encrypted_text }}</p>
+    </div>
+    {% endif %}
+
+    <script>
+        //check localStorage for a saved mode on page load
+        window.onload = function() {
+            const savedMode = localStorage.getItem('theme');
+            if (savedMode === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.toggle-button').textContent = 'Switch to Light Mode';
+            }
+        };
+
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.toggle-button');
+            if (document.body.classList.contains('dark-mode')) {
+                button.textContent = 'Switch to Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                button.textContent = 'Switch to Dark Mode'
+                localStorage.setItem('theme', 'light')
+            }
+        }
+    </script>
+</body>
+</html>
