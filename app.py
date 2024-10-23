@@ -6,8 +6,6 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/encrypt', methods=['POST'])
-
 def encrypt_caesar(text, key):
     """Encrypts a given plaintext using the Caesar cipher with the specified key."""
     encrypted_text = ''  # Initialize the encrypted text as an empty string
@@ -32,6 +30,8 @@ def encrypt_caesar(text, key):
             encrypted_text += char  # Non-alphabetic characters are added unchanged
     return encrypted_text  # Return the encrypted message
 
+
+@app.route('/encrypt', methods=['POST'])
 def encrypt():
     cipher = request.form['cipher']
     text = request.form['text']
