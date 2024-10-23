@@ -7,6 +7,31 @@ def home():
     return render_template('index.html')
 
 @app.route('/encrypt', methods=['POST'])
+
+def encrypt_caesar(text, key):
+    """Encrypts a given plaintext using the Caesar cipher with the specified key."""
+    encrypted_text = ''  # Initialize the encrypted text as an empty string
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'  # Lowercase alphabet
+    Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # Uppercase alphabet
+    number = '0123456789'  # String of digits
+    key_alpha = int(key) % 26  # Normalize the key for alphabetic shifting
+    key_num = int(key) % 10  # Normalize the key for numeric shifting
+    
+    for char in text:  # Iterate through each character in the plaintext
+        if char.isalpha():  # Check if the character is an alphabetic letter
+            if char.isupper():  # If the character is uppercase
+                location = (Alphabet.find(char) + key_alpha) % 26  # Calculate new character location
+                encrypted_text += Alphabet[location]  # Add the encrypted character to the new text
+            else:  # If the character is lowercase
+                location = (alphabet.find(char) + key_alpha) % 26  # Calculate new character location
+                encrypted_text += alphabet[location]  # Add the encrypted character to the new text
+        elif char.isdigit():  # Check if the character is a digit
+            location = (number.find(char) + key_num) % 10  # Calculate new digit location
+            encrypted_text += number[location]  # Add the encrypted digit to the new text
+        else: 
+            encrypted_text += char  # Non-alphabetic characters are added unchanged
+    return encrypted_text  # Return the encrypted message
+
 def encrypt():
     cipher = request.form['cipher']
     text = request.form['text']
@@ -21,10 +46,7 @@ def encrypt():
 
     try:
         if cipher == 'caesar':
-            shift = int(key)  # Assuming key is an integer for Caesar cipher
-            encrypted_text = ''.join(chr((ord(char) - 65 + shift) % 26 + 65) if char.isupper() else
-                                    chr((ord(char) - 97 + shift) % 26 + 97) if char.islower() else char 
-                                    for char in text)
+            encrypted_text = encrypt_caesar(text, key)
         
         elif cipher == 'xor':
             #XOR cipher encryption logic
