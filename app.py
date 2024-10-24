@@ -12,9 +12,9 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-app.secret_key = os.urandom(24)  # Set a secret key for session management
-
 app = Flask(__name__)
+
+app.secret_key = os.urandom(24)  # Set a secret key for session management
 
 # Use environment variable for database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URI')
