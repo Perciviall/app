@@ -104,9 +104,9 @@ def logout():
 
 
 # Use the application context to access the database
-with app.app_context():
-    db.drop_all()   # Drop all tables
-    db.create_all() # Recreate all tables
+#with app.app_context():
+#    db.drop_all()   # Drop all tables
+#    db.create_all() # Recreate all tables
 
 
 if __name__ == '__main__':
