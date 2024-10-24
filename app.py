@@ -20,5 +20,8 @@ def index():
     users = User.query.all()  # Fetch data from the database
     return render_template('index.html', users=users)
 
+with app.app_context():
+    db.create_all()  # This will create the tables based on the models
+
 if __name__ == '__main__':
     app.run()
