@@ -6,6 +6,8 @@
     <title>Users</title>
 </head>
 <body>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
     <h1>User List</h1>
     <ul>
     {% for user in users %}
