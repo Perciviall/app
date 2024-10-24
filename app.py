@@ -67,10 +67,12 @@ def login():
 
     return render_template('login.html')
 
-@app.before_first_request
+@app.before_request
 def create_tables():
-    with app.app_context():
-        db.create_all()  # Create tables if they don't exist
+    if not hasattr(create_tables, 'initialized'):
+        with app.app_context():
+            db.create_all()
+        create_tables.initialized = True  # Mark as initialized
 
 @app.route('/logout')
 def logout():
