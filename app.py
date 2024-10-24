@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 import os
 from functools import wraps
+from werkzeug.security import check_password_hash
 
 def login_required(f):
     @wraps(f)
@@ -47,9 +48,6 @@ def add_user():
     db.session.commit()  # Save to the database
     return redirect('/')
 
-from werkzeug.security import check_password_hash
-from flask import session
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -72,17 +70,20 @@ def register():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        password = generate_password_hash(request.form['password'], method='sha256')
+        password = request.form['password']
 
-        # Check if user already exists
+        # Check if the user already exists
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('Email already registered.', 'danger')
             return redirect(url_for('register'))
 
-        new_user = User(name=name, email=email, password=password)
+        hashed_password = generate_password_hash(password, method='sha256')
+        new_user = User(name=name, email=email, password=hashed_password)
+
         db.session.add(new_user)
         db.session.commit()
+
         flash('Registration successful! You can now log in.', 'success')
         return redirect(url_for('login'))
 
