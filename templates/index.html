@@ -6,6 +6,16 @@
     <title>Users</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
     <a href="{{ url_for('logout') }}">Logout</a>
 
     <h1>User List</h1>
