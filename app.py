@@ -3,6 +3,8 @@ from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+app.secret_key = os.urandom(24)  # Set a secret key for session management
+
 app = Flask(__name__)
 
 # Use environment variable for database URI
