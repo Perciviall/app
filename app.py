@@ -28,8 +28,10 @@ def add_user():
     db.session.commit()  # Save to the database
     return redirect('/')
 
-with app.app_context():
-    db.create_all()  # This will create the tables based on the models
+@app.before_first_request
+def create_tables():
+    with app.app_context():
+        db.create_all()  # Create tables if they don't exist
 
 if __name__ == '__main__':
     app.run()
