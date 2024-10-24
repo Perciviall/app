@@ -101,13 +101,12 @@ def logout():
     flash('You have been logged out.', 'success')
     return redirect(url_for('login'))  # Redirect to login page
 
-from app import db
 
-# Drop all tables (be careful, this will delete all your data)
-db.drop_all()
+# Use the application context to access the database
+with app.app_context():
+    db.drop_all()   # Drop all tables
+    db.create_all() # Recreate all tables
 
-# Recreate tables with the updated schema
-db.create_all()
 
 if __name__ == '__main__':
     app.run()
