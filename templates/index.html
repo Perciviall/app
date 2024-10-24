@@ -6,6 +6,27 @@
     <title>Users</title>
 </head>
 <body>
+    {% if 'user_id' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <h1>Welcome, {{ user.name }}!</h1>
+        <h1>User List</h1>
+        <ul>
+            {% for user in users %}
+                <li>{{ user.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add a User</h2>
+        <form action="/add" method="POST">
+            <input type="text" name="name" placeholder="Enter name" required>
+            <input type="submit" value="Add User">
+        </form>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <h1>Please log in to see the user list.</h1>
+    {% endif %}
+
+    <!-- Flash messages section -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul>
@@ -15,20 +36,5 @@
             </ul>
         {% endif %}
     {% endwith %}
-    
-    <a href="{{ url_for('logout') }}">Logout</a>
-
-    <h1>User List</h1>
-    <ul>
-    {% for user in users %}
-        <li>{{ user.name }}</li>
-    {% endfor %}
-    </ul>
-    
-    <h2>Add a User</h2>
-    <form action="/add" method="POST">
-        <input type="text" name="name" placeholder="Enter name" required>
-        <input type="submit" value="Add User">
-    </form>
 </body>
 </html>
