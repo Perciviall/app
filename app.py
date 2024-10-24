@@ -31,10 +31,12 @@ class User(db.Model):
 
 
 @app.route('/')
-@login_required  # Add this to restrict access
+@login_required
 def index():
     user = User.query.get(session['user_id'])  # Get the logged-in user
-    return render_template('index.html', user=user)
+    users = User.query.all()  # Get all users for the list
+    return render_template('index.html', user=user, users=users)
+
 
 
 @app.route('/add', methods=['POST'])
