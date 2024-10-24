@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -31,6 +31,26 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()  # Save to the database
     return redirect('/')
+
+from werkzeug.security import check_password_hash
+from flask import session
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id  # Store user id in session
+            flash('Login successful!', 'success')
+            return redirect(url_for('index'))  # Redirect to home page
+
+        flash('Invalid email or password.', 'danger')
+
+    return render_template('login.html')
 
 @app.before_first_request
 def create_tables():
