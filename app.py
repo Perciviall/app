@@ -70,5 +70,11 @@ def create_tables():
     with app.app_context():
         db.create_all()  # Create tables if they don't exist
 
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)  # Clear the session
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('login'))  # Redirect to login page
+
 if __name__ == '__main__':
     app.run()
