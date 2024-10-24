@@ -12,5 +12,11 @@
         <li>{{ user.name }}</li>
     {% endfor %}
     </ul>
+    
+    <h2>Add a User</h2>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Enter name" required>
+        <input type="submit" value="Add User">
+    </form>
 </body>
 </html>
