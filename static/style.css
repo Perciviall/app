@@ -37,7 +37,8 @@ label {
 
 /* Input Styles */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {  /* Add this line */
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -46,7 +47,8 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="email"]:focus {  /* Add this line */
     border-color: #007bff; /* Change border color on focus */
 }
 
