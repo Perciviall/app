@@ -24,34 +24,34 @@
         border-bottom: 1px solid #ccc;
         transition: background-color 0.3s, color 0.3s; /* Smooth transition */
     }
+    
     nav ul {
         list-style-type: none;
         padding: 0;
     }
+    
     nav ul li {
         display: inline;
         margin-right: 20px;
     }
+    
     nav ul li a {
         text-decoration: none;
         color: #007bff;
     }
+    
     nav ul li a:hover {
         text-decoration: underline;
     }
 
     /* Toggle Container Styles */
     .toggle-container {
-        position: fixed; /* Fixes the position relative to the viewport */
-        top: 20px; /* Distance from the top */
-        left: 20px; /* Distance from the left */
         display: flex;
-        align-items: center; /* Center items vertically */
+        align-items: center; /* Center the toggle vertically */
         background-color: #fff; /* Background color */
         border-radius: 20px; /* Rounded corners */
         padding: 5px; /* Padding around the toggle */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
-        z-index: 1000; /* Ensures it's above other elements */
     }
 
     /* Style the checkbox */
@@ -93,13 +93,13 @@
     }
 
     /* Styles for light mode */
-    body.light-mode .header {
+    body.light-mode header {
         background-color: #f8f9fa; /* Light background for header */
         color: #333; /* Light text color */
     }
 
     /* Styles for dark mode */
-    body.dark-mode .header {
+    body.dark-mode header {
         background-color: #343a40; /* Dark background for header */
         color: #f4f4f4; /* Dark text color */
     }
