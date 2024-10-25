@@ -13,10 +13,11 @@
 
 <style>
     /* Add some basic styling for the header */
-    header {
-        background-color: #f8f9fa;
+    .header {
+        background-color: #f8f9fa; /* Default light background */
         padding: 10px;
         border-bottom: 1px solid #ccc;
+        transition: background-color 0.3s, color 0.3s; /* Smooth transition */
     }
     nav ul {
         list-style-type: none;
@@ -34,31 +35,29 @@
         text-decoration: underline;
     }
 
-    .header {
-        padding: 10px;
-        /* Add other header styles */
-    }
-
+    /* Styles for light mode */
     body.light-mode .header {
         background-color: #f8f9fa; /* Light background for header */
         color: #333; /* Light text color */
     }
 
+    /* Styles for dark mode */
     body.dark-mode .header {
         background-color: #343a40; /* Dark background for header */
         color: #f4f4f4; /* Dark text color */
     }
 
+    /* Light mode body styles */
     body.light-mode {
         background-color: #f4f4f4;
         color: #333;
     }
 
+    /* Dark mode body styles */
     body.dark-mode {
         background-color: #333;
         color: #f4f4f4;
     }
-    
 </style>
 
 <script>
