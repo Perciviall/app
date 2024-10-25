@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, io, send_file
 from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -67,6 +67,14 @@ def index():
     users = User.query.all()  # Get all users for the list
     return render_template('index.html', user=user, users=users)
 
+@app.route('/download/<int:file_id>')
+def download_file(file_id):
+    file = FileUpload.query.get(file_id)
+    return send_file(
+        io.BytesIO(file.file_data),
+        attachment_filename=file.name,
+        as_attachment=True
+    )
 
 
 @app.route('/add', methods=['POST'])
