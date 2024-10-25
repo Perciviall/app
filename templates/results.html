@@ -1,4 +1,17 @@
-{% for file in results %}
-    <p>{{ file.name }}</p>
-    <a href="{{ url_for('download_file', file_id=file.id) }}">Download</a>
-{% endfor %}
+<form action="{{ url_for('search') }}" method="get">
+    <input type="text" name="query" placeholder="Search for files...">
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+    <ul>
+        {% for file in results %}
+            <li>
+                {{ file.name }} 
+                <a href="{{ url_for('download_file', file_id=file.id) }}">Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
