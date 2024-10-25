@@ -36,5 +36,12 @@
             </ul>
         {% endif %}
     {% endwith %}
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <input type="text" name="name" placeholder="Enter name" required>
+        <button type="submit">Upload</button>
+    </form>
+
 </body>
 </html>
