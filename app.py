@@ -74,7 +74,7 @@ def download_file(file_id):
     if file:
         return send_file(
             io.BytesIO(file.file_data),
-            attachment_filename=file.name,
+            download_name=file.name,
             as_attachment=True
         )
     return "File not found", 404
