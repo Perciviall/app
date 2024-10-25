@@ -1,5 +1,12 @@
 /* style.css */
 
+/* Global Box Sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Apply box-sizing model */
+}
+
 /* General Body Styles */
 body {
     font-family: Arial, sans-serif;
