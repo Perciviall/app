@@ -65,13 +65,6 @@ def search():
     # Render the results in the template
     return render_template('results.html', results=results)  # Adjust according to your template
 
-
-@app.route('/search')
-def search():
-    files = FileUpload.query.all()  # Query all uploaded files from the database
-    return render_template('results.html', results=files)
-
-
 @app.route('/')
 @login_required
 def index():
