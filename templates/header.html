@@ -1,0 +1,35 @@
+<!-- header.html -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('search') }}">Search Files</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload File</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    /* Add some basic styling for the header */
+    header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #007bff;
+    }
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
+</style>
