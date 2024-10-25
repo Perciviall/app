@@ -9,23 +9,32 @@
 </head>
 <body>
     {% include 'header.html' %}
+    
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul>
-            {% for category, message in messages %}
-                <li class="alert alert-{{ category }}">{{ message }}</li>
-            {% endfor %}
+                {% for category, message in messages %}
+                    <li class="alert alert-{{ category }}">{{ message }}</li>
+                {% endfor %}
             </ul>
         {% endif %}
     {% endwith %}
-    <div class="container"> <!-- Add this container -->
-        <h1>Login</h1>
+
+    <div class="login-container">
+        <h2>Login</h2>
         <form method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
             <button type="submit">Login</button>
         </form>
+
         <p>Don't have an account? <a href="https://www.percivial.live/register">Sign up here</a></p>
-    </div> <!-- End of container -->
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
