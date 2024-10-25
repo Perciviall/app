@@ -97,7 +97,7 @@ body.dark-mode .login-container {
 
 body.dark-mode input[type="text"],
 body.dark-mode input[type="password"],
-body .dark-mode input[type="email"] {
+body.dark-mode input[type="email"] {
     background-color: #555; /* Dark input background */
     color: #f4f4f4; /* Light text color for inputs */
     border-color: #777; /* Dark border color */
