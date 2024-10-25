@@ -11,7 +11,7 @@
     {% if 'user_id' in session %}
         <a href="{{ url_for('logout') }}">Logout</a>
         <h1>Welcome, {{ user.name }}!</h1>
-    
+
     {% else %}
         <a href="{{ url_for('login') }}">Login</a>
         <h1>Please log in or create an account.</h1>
@@ -28,12 +28,16 @@
         {% endif %}
     {% endwith %}
 
+    <p>Upload files!</p>
+    
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" required>
         <input type="text" name="name" placeholder="Enter name" required>
         <button type="submit">Upload</button>
     </form>
 
+    <p>Search Files!</p>
+    
     <form action="/search" method="GET">
         <input type="text" name="query" placeholder="Search by name" required>
         <button type="submit">Search</button>
