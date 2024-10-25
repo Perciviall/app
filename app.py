@@ -84,16 +84,6 @@ def download_file(file_id):
         )
     return "File not found", 404
 
-
-
-@app.route('/add', methods=['POST'])
-def add_user():
-    name = request.form['name']
-    new_user = User(name=name)
-    db.session.add(new_user)
-    db.session.commit()  # Save to the database
-    return redirect('/')
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
