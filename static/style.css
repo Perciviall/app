@@ -1,50 +1,102 @@
+/* style.css */
+
+/* General Body Styles */
 body {
-    font-family: Arial, sans-serif; /* Set a default font */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Center the content vertically */
-    background-color: #f4f4f4; /* Light background color */
 }
 
-.container {
-    background-color: #fff; /* White background for the box */
+/* Header Styles */
+.header {
+    background-color: #f8f9fa; /* Light mode header */
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Login Container Styles */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto; /* Center the container */
     padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 300px; /* Fixed width for the login box */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center; /* Center the heading */
-    margin-bottom: 20px; /* Space below the heading */
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px;
 }
 
-input[type="email"],
+/* Label Styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Styles */
+input[type="text"],
 input[type="password"] {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding inside the input */
-    margin-bottom: 15px; /* Space below each input */
-    border: 1px solid #ccc; /* Border color */
-    border-radius: 4px; /* Rounded corners for inputs */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
 }
 
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Change border color on focus */
+}
+
+/* Button Styles */
 button {
-    width: 100%; /* Full width for the button */
-    padding: 10px; /* Padding inside the button */
+    width: 100%;
+    padding: 10px;
     background-color: #007bff; /* Button color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners for button */
-    cursor: pointer; /* Pointer cursor on hover */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker color on hover */
+    background-color: #0056b3; /* Darker button color on hover */
 }
 
+/* Link Styles */
 p {
-    text-align: center; /* Center the paragraph */
+    text-align: center;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .login-container {
+    background-color: #444; /* Dark background for the login container */
+    color: #f4f4f4; /* Light text color */
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"] {
+    background-color: #555; /* Dark input background */
+    color: #f4f4f4; /* Light text color for inputs */
+    border-color: #777; /* Dark border color */
+}
+
+body.dark-mode button {
+    background-color: #007bff; /* Keep button color the same */
+}
+
+body.dark-mode button:hover {
+    background-color: #0056b3; /* Keep hover color the same */
 }
