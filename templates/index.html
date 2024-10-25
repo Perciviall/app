@@ -6,6 +6,8 @@
     <title>Users</title>
 </head>
 <body>
+    {% include 'header.html' %}
+    
     {% if 'user_id' in session %}
         <a href="{{ url_for('logout') }}">Logout</a>
         <h1>Welcome, {{ user.name }}!</h1>
