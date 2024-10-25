@@ -29,7 +29,28 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)  # Ensure this column is defined
     password = db.Column(db.String(128), nullable=False)  # Hashed password
 
+class FileUpload(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    file_data = db.Column(db.LargeBinary, nullable=False)
 
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return "No file part", 400
+
+    file = request.files['file']
+    name = request.form['name']
+
+    if file.filename == '':
+        return "No selected file", 400
+
+    # Save the file data into the database
+    new_file = FileUpload(name=name, file_data=file.read())
+    db.session.add(new_file)
+    db.session.commit()
+
+    return redirect(url_for('index'))  # Redirect to the index or a success page
 
 @app.route('/')
 @login_required
