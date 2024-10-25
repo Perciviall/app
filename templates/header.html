@@ -34,15 +34,31 @@
         text-decoration: underline;
     }
 
+    .header {
+        padding: 10px;
+        /* Add other header styles */
+    }
+
+    body.light-mode .header {
+        background-color: #f8f9fa; /* Light background for header */
+        color: #000000; /* Light text color */
+    }
+
+    body.dark-mode .header {
+        background-color: #343a40; /* Dark background for header */
+        color: #ffffff; /* Dark text color */
+    }
+
     body.light-mode {
-        background-color: #f4f4f4;
-        color: #333;
+        background-color: #ffffff;
+        color: #000000;
     }
 
     body.dark-mode {
-        background-color: #333;
-        color: #f4f4f4;
+        background-color: #000000;
+        color: #ffffff;
     }
+    
 </style>
 
 <script>
