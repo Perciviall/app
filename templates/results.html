@@ -1,5 +1,4 @@
 {% for file in results %}
     <p>{{ file.name }}</p>
-    <!-- Optionally, provide a way to download the file -->
-    <a href="/download/{{ file.id }}">Download</a>
+    <a href="{{ url_for('download_file', file_id=file.id) }}">Download</a>
 {% endfor %}
