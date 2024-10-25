@@ -49,7 +49,8 @@ def upload_file():
     db.session.add(new_file)
     db.session.commit()
 
-    return redirect(url_for('search'))  # Or wherever you want to redirect
+    return redirect(url_for('search'))  # Change this to the name of the route you want to redirect to
+
 
 @app.route('/search', methods=['GET'])
 def search():
