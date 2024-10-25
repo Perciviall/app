@@ -55,10 +55,22 @@ def upload_file():
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
-    results = FileUpload.query.filter_by(name=query).all()
+    
+    # If a query is provided, filter the results based on the name
+    if query:
+        results = FileUpload.query.filter(FileUpload.name.ilike(f'%{query}%')).all()  # Use ilike for case-insensitive search
+    else:
+        results = FileUpload.query.all()  # If no query, return all files
 
-    # You can render results in a template or return them in JSON format
+    # Render the results in the template
     return render_template('results.html', results=results)  # Adjust according to your template
+
+
+@app.route('/search')
+def search():
+    files = FileUpload.query.all()  # Query all uploaded files from the database
+    return render_template('results.html', results=files)
+
 
 @app.route('/')
 @login_required
