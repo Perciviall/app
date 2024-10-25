@@ -71,11 +71,14 @@ def index():
 @app.route('/download/<int:file_id>')
 def download_file(file_id):
     file = FileUpload.query.get(file_id)
-    return send_file(
-        io.BytesIO(file.file_data),
-        attachment_filename=file.name,
-        as_attachment=True
-    )
+    if file:
+        return send_file(
+            io.BytesIO(file.file_data),
+            attachment_filename=file.name,
+            as_attachment=True
+        )
+    return "File not found", 404
+
 
 
 @app.route('/add', methods=['POST'])
