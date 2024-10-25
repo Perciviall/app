@@ -17,12 +17,7 @@
                 <li>{{ user.name }}</li>
             {% endfor %}
         </ul>
-
-        <h2>Add a User</h2>
-        <form action="/add" method="POST">
-            <input type="text" name="name" placeholder="Enter name" required>
-            <input type="submit" value="Add User">
-        </form>
+    
     {% else %}
         <a href="{{ url_for('login') }}">Login</a>
         <h1>Please log in to see the user list.</h1>
