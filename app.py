@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from functools import wraps
 from werkzeug.security import check_password_hash
+import io
 
 def login_required(f):
     @wraps(f)
