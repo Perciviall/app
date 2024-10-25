@@ -1,4 +1,3 @@
-<!-- header.html -->
 <header>
     <nav>
         <ul>
@@ -8,12 +7,18 @@
     </nav>
 
     <!-- Light/Dark Mode Toggle -->
-    <button id="toggle-mode">Toggle Dark/Light Mode</button>
+    <div class="toggle-container">
+        <input type="checkbox" id="toggle-mode" />
+        <label for="toggle-mode"></label>
+    </div>
 </header>
 
 <style>
     /* Add some basic styling for the header */
-    .header {
+    header {
+        display: flex;
+        justify-content: space-between; /* Space between nav and toggle */
+        align-items: center; /* Center items vertically */
         background-color: #f8f9fa; /* Default light background */
         padding: 10px;
         border-bottom: 1px solid #ccc;
@@ -33,6 +38,58 @@
     }
     nav ul li a:hover {
         text-decoration: underline;
+    }
+
+    /* Toggle Container Styles */
+    .toggle-container {
+        position: fixed; /* Fixes the position relative to the viewport */
+        top: 20px; /* Distance from the top */
+        left: 20px; /* Distance from the left */
+        display: flex;
+        align-items: center; /* Center items vertically */
+        background-color: #fff; /* Background color */
+        border-radius: 20px; /* Rounded corners */
+        padding: 5px; /* Padding around the toggle */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+        z-index: 1000; /* Ensures it's above other elements */
+    }
+
+    /* Style the checkbox */
+    .toggle-container input[type="checkbox"] {
+        display: none; /* Hide the checkbox */
+    }
+
+    /* Style the label to act as the toggle */
+    .toggle-container label {
+        width: 40px; /* Width of the toggle */
+        height: 20px; /* Height of the toggle */
+        background-color: #ccc; /* Default background color */
+        border-radius: 20px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for better UX */
+        position: relative; /* Relative positioning for pseudo-elements */
+    }
+
+    /* Create a circular "slider" for the toggle */
+    .toggle-container label:before {
+        content: '';
+        position: absolute;
+        top: 2px; /* Position the circle in the center */
+        left: 2px; /* Position the circle in the center */
+        width: 16px; /* Width of the circle */
+        height: 16px; /* Height of the circle */
+        background-color: white; /* Circle color */
+        border-radius: 50%; /* Make it circular */
+        transition: transform 0.3s; /* Smooth transition */
+    }
+
+    /* Change toggle appearance when checked */
+    .toggle-container input[type="checkbox"]:checked + label {
+        background-color: #007bff; /* Change background color when checked */
+    }
+
+    /* Move the circle when checked */
+    .toggle-container input[type="checkbox"]:checked + label:before {
+        transform: translateX(20px); /* Move circle to the right */
     }
 
     /* Styles for light mode */
@@ -61,13 +118,14 @@
 </style>
 
 <script>
-    const toggleButton = document.getElementById('toggle-mode');
+    const toggleCheckbox = document.getElementById('toggle-mode');
 
     // Check the user's preference from local storage
     const currentMode = localStorage.getItem('mode') || 'light';
     document.body.classList.add(currentMode + '-mode');
+    toggleCheckbox.checked = currentMode === 'dark'; // Set initial toggle state
 
-    toggleButton.addEventListener('click', () => {
+    toggleCheckbox.addEventListener('change', () => {
         // Toggle the mode
         if (document.body.classList.contains('light-mode')) {
             document.body.classList.remove('light-mode');
