@@ -38,20 +38,18 @@ class FileUpload(db.Model):
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return "No file part", 400
+        return "No file uploaded", 400
 
     file = request.files['file']
-    name = request.form['name']
-
     if file.filename == '':
         return "No selected file", 400
 
-    # Save the file data into the database
-    new_file = FileUpload(name=name, file_data=file.read())
+    # Save the file with the original filename
+    new_file = FileUpload(name=file.filename, file_data=file.read())
     db.session.add(new_file)
     db.session.commit()
 
-    return redirect(url_for('index'))  # Redirect to the index or a success page
+    return redirect(url_for('search'))  # Or wherever you want to redirect
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -72,9 +70,10 @@ def index():
 def download_file(file_id):
     file = FileUpload.query.get(file_id)
     if file:
+        # Assuming file.name includes the full filename with extension
         return send_file(
             io.BytesIO(file.file_data),
-            download_name=file.name,
+            download_name=file.name,  # This should include the extension, e.g., 'example.pdf'
             as_attachment=True
         )
     return "File not found", 404
