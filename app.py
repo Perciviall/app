@@ -52,6 +52,14 @@ def upload_file():
 
     return redirect(url_for('index'))  # Redirect to the index or a success page
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    results = FileUpload.query.filter_by(name=query).all()
+
+    # You can render results in a template or return them in JSON format
+    return render_template('results.html', results=results)  # Adjust according to your template
+
 @app.route('/')
 @login_required
 def index():
