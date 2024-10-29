@@ -50,6 +50,9 @@ li.alert {
 }
 /* Form Section Styles */
 form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     max-width: 400px;
     margin: 20px auto; /* Center forms */
     padding: 20px;
@@ -78,6 +81,7 @@ input[type="file"] {  /* Add file input styles */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-bottom: 10px;
     transition: border-color 0.3s;
 }
 
@@ -97,6 +101,7 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 10px;
     transition: background-color 0.3s;
 }
 
